@@ -184,6 +184,10 @@ public:
                 m_redirects[title] = links.front();
             }
         }
+
+	else {
+	  m_redirects[title] = title;
+	}
     }
 
     static void resolveRedirects(QString &target)
@@ -394,7 +398,7 @@ template <class PageHandler> void parse(const QString &fileName, PageHandler &ha
     static const QString pageToken = "page";
     static const QString titleToken = "title";
     static const QString textToken = "text";
-
+    
     while(!xml.atEnd())
     {
         QXmlStreamReader::TokenType type = xml.readNext();
@@ -416,6 +420,7 @@ template <class PageHandler> void parse(const QString &fileName, PageHandler &ha
                 qDebug() << QString::number(pageCount) + " pages finished.";
             }
         }
+	
     }
 }
 
